@@ -7,6 +7,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const MainNav: FC = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -36,9 +37,9 @@ const MainNav: FC = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <NavLink to="/" className="flex items-center">
           Account
-        </a>
+        </NavLink>
       </Typography>
       <Typography
         as="li"
@@ -46,9 +47,9 @@ const MainNav: FC = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <NavLink to="/" className="flex items-center">
           Blocks
-        </a>
+        </NavLink>
       </Typography>
       <Typography
         as="li"
@@ -56,9 +57,9 @@ const MainNav: FC = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <NavLink to="/" className="flex items-center">
           Docs
-        </a>
+        </NavLink>
       </Typography>
     </ul>
   );
@@ -72,7 +73,7 @@ const MainNav: FC = () => {
           variant="small"
           className="mr-4 cursor-pointer py-1.5 font-normal"
         >
-          <span>Material Tailwind</span>
+          <span className="font-bold uppercase text-2xl">E-Mart</span>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
         <Button variant="gradient" size="sm" className="hidden lg:inline-block">

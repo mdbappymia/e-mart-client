@@ -9,58 +9,23 @@ const TopCategories = () => {
       </h1>
       <div className="container mx-auto">
         <Swiper
-          slidesPerView={4}
+          slidesPerView={3}
           spaceBetween={30}
           pagination={{
             clickable: true,
           }}
-          loop={true}
-          navigation={true}
-          modules={[Pagination, Navigation]}
+          modules={[Pagination]}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <div className="flex justify-center category-card">
-              <div className="relative h-48 w-48">
-                <img
-                  className="rounded-full mx-auto"
-                  src="https://flowbite.com/docs/images/blog/image-4.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <a href="#" className="text-center my-5 uppercase block">
-              T Shart
-            </a>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="flex justify-center category-card">
-              <div className="relative h-48 w-48">
-                <img
-                  className="rounded-full mx-auto"
-                  src="https://flowbite.com/docs/images/blog/image-4.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <a href="#" className="text-center my-5 uppercase block">
-              T Shart
-            </a>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="flex justify-center category-card">
-              <div className="relative h-48 w-48">
-                <img
-                  className="rounded-full mx-auto"
-                  src="https://flowbite.com/docs/images/blog/image-4.jpg"
-                  alt=""
-                />
-              </div>
-            </div>
-            <a href="#" className="text-center my-5 uppercase block">
-              T Shart
-            </a>
-          </SwiperSlide>
+          <SwiperSlide>Slide 1</SwiperSlide>
+          <SwiperSlide>Slide 2</SwiperSlide>
+          <SwiperSlide>Slide 3</SwiperSlide>
+          <SwiperSlide>Slide 4</SwiperSlide>
+          <SwiperSlide>Slide 5</SwiperSlide>
+          <SwiperSlide>Slide 6</SwiperSlide>
+          <SwiperSlide>Slide 7</SwiperSlide>
+          <SwiperSlide>Slide 8</SwiperSlide>
+          <SwiperSlide>Slide 9</SwiperSlide>
         </Swiper>
       </div>
     </div>

@@ -1,19 +1,15 @@
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, EffectFade } from "swiper";
+import { Pagination, Navigation, EffectFade, Scrollbar } from "swiper";
 
 const Banner = () => {
   return (
     <div>
       <Swiper
-        spaceBetween={30}
-        loop={true}
-        effect={"fade"}
+        loop
         navigation={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[EffectFade, Navigation, Pagination]}
+        modules={[Navigation, Pagination]}
+        pagination={{ clickable: true }}
+        spaceBetween={5}
         className="mySwiper"
       >
         <SwiperSlide className="home-slider py-20">
@@ -23,7 +19,7 @@ const Banner = () => {
                 <div className="flex justify-center">
                   <div className="block p-6 rounded-lg">
                     <h1 className="text-gray-900 text-4xl leading-tight font-medium mb-2">
-                      Wireless Headphones
+                      New Brand Smart Watch
                     </h1>
                     <p className="text-gray-700 text-base mb-4">
                       Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -45,7 +41,11 @@ const Banner = () => {
               </div>
 
               <div>
-                <img className="px-20" src="/images/product-37.png" alt="" />
+                <img
+                  className="px-20 w-full h-72"
+                  src={require("./../../../utils/images/1.png")}
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@ const Banner = () => {
                 <div className="flex justify-center">
                   <div className="block p-6 rounded-lg">
                     <h1 className="text-gray-900 text-4xl leading-tight font-medium mb-2">
-                      Wireless Headphones
+                      Smart Watch
                     </h1>
                     <p className="text-gray-700 text-base mb-4">
                       Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -80,10 +80,8 @@ const Banner = () => {
 
               <div>
                 <img
-                  className="px-20"
-                  height="50%"
-                  width="100%"
-                  src="/images/product-38.png"
+                  className="px-20 w-full h-72"
+                  src={require("./../../../utils/images/2.png")}
                   alt=""
                 />
               </div>
@@ -97,7 +95,7 @@ const Banner = () => {
                 <div className="flex justify-center">
                   <div className="block p-6 rounded-lg">
                     <h1 className="text-gray-900 text-4xl leading-tight font-medium mb-2">
-                      Smart Watch
+                      Wireless Headphones
                     </h1>
                     <p className="text-gray-700 text-base mb-4">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -120,10 +118,8 @@ const Banner = () => {
 
               <div>
                 <img
-                  className="px-20"
-                  height="50%"
-                  width="100%"
-                  src="/images/product-39.png"
+                  className="px-20 w-full h-72"
+                  src={require("./../../../utils/images/3.png")}
                   alt=""
                 />
               </div>

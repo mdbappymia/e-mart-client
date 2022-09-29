@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-import React from "react";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 

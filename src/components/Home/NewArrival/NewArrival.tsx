@@ -8,7 +8,7 @@ const NewArrival = () => {
           New Arrival
         </h1>
         <div>
-          <nav className="flex sm:justify-center space-x-4">
+          <nav className="flex sm:justify-center space-x-4 text-white">
             {[
               ["Laptops", "/laptop"],
               ["Smart Phones", "/smartPhones"],

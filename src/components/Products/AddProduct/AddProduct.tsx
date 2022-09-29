@@ -49,7 +49,7 @@ const AddProduct: FC<IProps> = ({ setAddProductShow }) => {
     // console.log(productData);
     const isAddedProduct = window.confirm("Are you sure add product?");
     if (isAddedProduct) {
-      fetch("/api/products/addProduct", {
+      fetch("http://localhost:5000/product/add", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -78,7 +78,7 @@ const AddProduct: FC<IProps> = ({ setAddProductShow }) => {
         alert("Please insert product name");
         return;
       }
-      fetch("/api/postImage/postImage", {
+      fetch("http://localhost:5000/product/image", {
         method: "POST",
         headers: {
           "content-type": "application/json",
