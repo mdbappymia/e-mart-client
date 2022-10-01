@@ -1,13 +1,9 @@
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { getBase64 } from "../../../functions/imageProcess";
 import { RootState } from "../../../redux/store/store";
 
-interface IProps {
-  setAddProductShow: Function;
-}
-const AddProduct: FC<IProps> = ({ setAddProductShow }) => {
+const AddProduct: FC = () => {
   const {
     register,
     handleSubmit,
@@ -32,11 +28,10 @@ const AddProduct: FC<IProps> = ({ setAddProductShow }) => {
   const categories: any = useSelector(
     (state: RootState) => state.product.categories
   );
-  console.log(categories);
 
   const onSubmit = (data: any) => {
     const productData = {
-      user_id: user.uid,
+      user_id: user.uid || "unknown",
       ...data,
       images: images,
       mainImage: mainImage,
@@ -46,7 +41,6 @@ const AddProduct: FC<IProps> = ({ setAddProductShow }) => {
       colors: colors,
       uploadTime: Date.now(),
     };
-    // console.log(productData);
     const isAddedProduct = window.confirm("Are you sure add product?");
     if (isAddedProduct) {
       fetch("http://localhost:5000/product/add", {
@@ -73,47 +67,45 @@ const AddProduct: FC<IProps> = ({ setAddProductShow }) => {
     }
   };
   const imageAdd = (image: any) => {
-    getBase64(image).then((img: any) => {
-      if (!name) {
-        alert("Please insert product name");
-        return;
-      }
-      fetch("http://localhost:5000/product/image", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          image: img,
-          id: `${name.replace(" ", "_")}${Date.now()}`,
-          folder: name.replace(" ", "_"),
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setImages([...images, data]);
-          if (!mainImage) {
-            setMainImage(data.url);
-            // console.log(data)
-          }
-        });
-    });
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("id", `${name.replace(" ", "_")}${Date.now()}`);
+    formData.append("folder", name.replace(" ", "_"));
+
+    fetch("http://localhost:5000/product/image", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setImages([...images, data]);
+        if (!mainImage) {
+          setMainImage(data.url);
+          // console.log(data)
+        }
+      });
   };
-  // console.log(mainImage);
 
   const deleteImage = (imgUrl: any) => {
-    fetch("/api/deleteSingleImage/deleteImage", {
-      method: "POST",
+    fetch("http://localhost:5000/product/image", {
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ url: imgUrl }),
     })
       .then((res) => res.json())
-      .then((result) => {
+      .then(async (result) => {
         if (result.acknowledged) {
-          setImages(images.filter((item: any) => item.url !== result.url));
-          if (images.length === 1) {
+          const remainImages = await images.filter(
+            (item: any) => item.url !== result.url
+          );
+          setImages(remainImages);
+          if (result.url === mainImage) {
+            setMainImage(remainImages[0]?.url || "");
+            console.log();
+          }
+          if (remainImages === 0) {
             setMainImage("");
           }
         }
@@ -126,7 +118,6 @@ const AddProduct: FC<IProps> = ({ setAddProductShow }) => {
       </h1>
       <button
         type="button"
-        onClick={() => setAddProductShow(false)}
         className="absolute top-0 right-0 px-3 py-1 bg-red-700 text-white font-bold"
       >
         &times;
@@ -149,7 +140,12 @@ const AddProduct: FC<IProps> = ({ setAddProductShow }) => {
             <div className="flex">
               {images.map((image: any, i: any) => (
                 <div className=" relative" key={i}>
-                  <img src={"/" + image.url} alt="" height={300} width={300} />
+                  <img
+                    src={process.env.REACT_APP_PUBLIC_SERVER_URI + image.url}
+                    alt=""
+                    height={300}
+                    width={300}
+                  />
                   <button
                     type="button"
                     onClick={() => deleteImage(image.url)}
@@ -180,7 +176,10 @@ const AddProduct: FC<IProps> = ({ setAddProductShow }) => {
           <div>
             {images.length > 0 && (
               <img
-                src={"/" + mainImage || images[0].url}
+                src={
+                  process.env.REACT_APP_PUBLIC_SERVER_URI + mainImage ||
+                  images[0].url
+                }
                 alt=""
                 height={300}
                 width={300}

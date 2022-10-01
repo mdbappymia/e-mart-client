@@ -26,11 +26,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
+    path: "dashboard",
     element: <Dashboard />,
     children: [
       {
-        path: "/product",
+        path: "product",
         element: <AddProduct />,
       },
     ],

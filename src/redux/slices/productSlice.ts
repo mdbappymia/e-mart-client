@@ -1,19 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchAllProducts: any = createAsyncThunk(
-  "api/products/getAllProducts",
+  "api/product",
   async () => {
-    const response: any = await fetch(
-      "http://localhost:3000/api/products/getAllProducts"
-    );
+    const response: any = await fetch("http://localhost:5000/product");
     return response.json();
   }
 );
 
 export const fetchAllCategory: any = createAsyncThunk(
-  "api/products/category",
+  "api/product/category",
   async () => {
-    const response = await fetch("http://localhost:3000/api/products/category");
+    const response = await fetch("http://localhost:5000/product/category");
     return response.json();
   }
 );

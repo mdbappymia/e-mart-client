@@ -3,13 +3,13 @@ import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
-    <div>
-      <aside className="w-64" aria-label="Sidebar">
+    <div className="flex">
+      <aside className="w-64">
         <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
           <ul className="space-y-2">
             <li>
-              <a
-                href="#"
+              <Link
+                to="/dashboard"
                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
@@ -23,7 +23,7 @@ const Dashboard = () => {
                   <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                 </svg>
                 <span className="ml-3">Dashboard</span>
-              </a>
+              </Link>
             </li>
             <li>
               <Link
@@ -238,7 +238,7 @@ const Dashboard = () => {
           </ul>
         </div>
       </aside>
-      <div>
+      <div className="w-full">
         <Outlet />
       </div>
     </div>
