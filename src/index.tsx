@@ -13,6 +13,10 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import AddProduct from "./components/Products/AddProduct/AddProduct";
+import ContextProvider from "./context/ContextProvider";
+import About from "./Pages/About/About";
+import Shop from "./Pages/Shop/Shop";
+import Contact from "./Pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +26,18 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "shop",
+        element: <Shop />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
     ],
   },
@@ -40,12 +56,15 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider>
-        <RouterProvider router={router} />
-      </ThemeProvider>
+      <ContextProvider>
+        <ThemeProvider>
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </ContextProvider>
     </Provider>
   </React.StrictMode>
 );

@@ -12,8 +12,6 @@ import {
 import { useDispatch } from "react-redux";
 import { setError, setIsLoading, setUser } from "../redux/slices/userSlice";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store/store";
 initializedAuthentication();
 const useFirebase = () => {
   const [dropdownShow, setDropdownShow] = useState(false);
@@ -26,9 +24,6 @@ const useFirebase = () => {
       console.log(data.user);
     });
   };
-
-  const product = useSelector((state: RootState) => state.product);
-  console.log(product);
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
       if (user) {

@@ -16,6 +16,8 @@ import {
   faMagnifyingGlass,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store/store";
 
 const MainNav: FC = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -27,7 +29,8 @@ const MainNav: FC = () => {
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
-
+  const user = useSelector((state: RootState) => state.users.user);
+  console.log(user);
   const navList = (
     <ul className="relative mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 ">
       <div className="home_nav">
@@ -56,7 +59,7 @@ const MainNav: FC = () => {
           color="blue-gray"
           className="p-1 font-normal"
         >
-          <NavLink to="/" className="flex items-center">
+          <NavLink to="/shop" className="flex items-center">
             Shop
           </NavLink>
         </Typography>
@@ -84,7 +87,7 @@ const MainNav: FC = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <NavLink to="/" className="flex items-center">
+        <NavLink to="/about" className="flex items-center">
           About
         </NavLink>
       </Typography>
@@ -104,8 +107,18 @@ const MainNav: FC = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <NavLink to="/" className="flex items-center">
+        <NavLink to="/contact" className="flex items-center">
           Contact
+        </NavLink>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <NavLink to="/dashboard" className="flex items-center">
+          Dashboard
         </NavLink>
       </Typography>
     </ul>

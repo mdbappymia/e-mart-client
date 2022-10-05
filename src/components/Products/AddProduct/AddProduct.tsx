@@ -1,6 +1,8 @@
+import { Alert } from "@material-tailwind/react";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { RootState } from "../../../redux/store/store";
 
 const AddProduct: FC = () => {
@@ -67,6 +69,13 @@ const AddProduct: FC = () => {
     }
   };
   const imageAdd = (image: any) => {
+    if (!image) {
+      return;
+    }
+    if (!name) {
+      alert("Please insert product name");
+      return;
+    }
     const formData = new FormData();
     formData.append("image", image);
     formData.append("id", `${name.replace(" ", "_")}${Date.now()}`);
@@ -116,12 +125,13 @@ const AddProduct: FC = () => {
       <h1 className="text-center font-bold uppercase text-2xl border-b-4">
         Add new product
       </h1>
-      <button
+      <Link
+        to="/dashboard"
         type="button"
         className="absolute top-0 right-0 px-3 py-1 bg-red-700 text-white font-bold"
       >
         &times;
-      </button>
+      </Link>
       <div className="p-10">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -339,6 +349,9 @@ const AddProduct: FC = () => {
               type="button"
               className="border bg-green-500"
               onClick={() => {
+                if (!size) {
+                  return;
+                }
                 setSizes([...sizes, size]);
                 setSize("");
               }}
@@ -379,6 +392,9 @@ const AddProduct: FC = () => {
               type="button"
               className="border bg-green-500"
               onClick={() => {
+                if (!color) {
+                  return;
+                }
                 setColors([...colors, color]);
                 setColor("");
               }}
