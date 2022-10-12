@@ -10,7 +10,7 @@ const Banner = () => {
         modules={[Navigation, Pagination]}
         pagination={{ clickable: true }}
         spaceBetween={5}
-        className="mySwiper"
+        className="mySwiper home"
       >
         <SwiperSlide className="home-slider py-20">
           <div className="slider-height container mx-auto">

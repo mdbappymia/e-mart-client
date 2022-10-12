@@ -1,31 +1,38 @@
+import { Button } from "@material-tailwind/react";
+import { FC } from "react";
+import { useSelector } from "react-redux";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { RootState } from "../../../redux/store/store";
 
-const TopCategories = () => {
+const TopCategories: FC = () => {
+  const categories = useSelector(
+    (state: RootState) => state.product.categories
+  );
   return (
     <div className="py-10">
       <h1 className="text-center font bold uppercase my-20 text-xl font-bold">
         Top Categories
       </h1>
-      <div className="container mx-auto">
+      <div className="container mx-auto h-48">
         <Swiper
           slidesPerView={3}
           spaceBetween={30}
           pagination={{
             clickable: true,
           }}
-          modules={[Pagination]}
+          modules={[Pagination, Navigation]}
           className="mySwiper"
         >
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
+          {categories.map((category: string) => (
+            <SwiperSlide>
+              <div className="flex justify-center items-center">
+                <Button className="text-center font-bold uppercase text-3xl px-4 py-2 bg-blue-900">
+                  {category}
+                </Button>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>
